@@ -13,16 +13,25 @@ positionsimages=[(0.1, 0.9),(0.5, 0.9),(0.9, 0.9),
                  (0.1, 0.5),(0.5, 0.5),(0.9, 0.5),
                  (0.1, 0.1),(0.5, 0.1),(0.9, 0.1)]
 positionsimagesstandard=[(0.5, 0.5),(0.1, 0.9),(0.9, 0.9),(0.1, 0.1),(0.9, 0.1)]
-x=""
-x="./video/"+input("Enter name of the video file you wanna edit:")
-videopath=x
-video=me.VideoFileClip(videopath)
+while True:
+    try:
+        x="./video/"+input("Enter name of the video file you wanna edit:")
+        videopath=x
+        video=me.VideoFileClip(videopath)
+        break
+    except OSError:
+        print("File not found")
 video=video.resize((1920,1080))
-x="./spreadsheets/"+input("Enter the name of the timestamp spreadsheet file you wanna use:")
-with open(x, newline='') as csvfile:
-    spamreader = csv.reader(csvfile, delimiter=',', quotechar='|')
-    for row in spamreader:
-        timestamps.append(row)
+while True:
+    try:
+        x="./spreadsheets/"+input("Enter the name of the timestamp spreadsheet file you wanna use:")
+        with open(x, newline='') as csvfile:
+            spamreader = csv.reader(csvfile, delimiter=',', quotechar='|')
+            for row in spamreader:
+                timestamps.append(row)
+        break
+    except OSError:
+        print("File not found")
 for timestamp in timestamps:
     timestamp[0]=timestamp[0].replace("\"",'')
     timestamp[1]=timestamp[1].replace("\"",'')
@@ -31,16 +40,26 @@ for timestamp in timestamps:
     timestamp.append(int(h) * 3600 + int(m) * 60 + int(s))
 
 
-x="./spreadsheets/"+input("Enter the name of the images spreadsheet file you wanna use:")  
-with open(x, newline='') as csvfile:
-    spamreader = csv.reader(csvfile, delimiter=' ', quotechar='|')
-    for row in spamreader:
-        images.append(row)      
-x="./spreadsheets/"+input("Enter the name of the captions spreadsheet file you wanna use:")  
-with open(x, newline='') as csvfile:
-    spamreader = csv.reader(csvfile, delimiter=' ', quotechar='|')
-    for row in spamreader:
-        captions.append(row)     
+while True:
+    try:
+        x="./spreadsheets/"+input("Enter the name of the images spreadsheet file you wanna use:")  
+        with open(x, newline='') as csvfile:
+            spamreader = csv.reader(csvfile, delimiter=' ', quotechar='|')
+            for row in spamreader:
+                images.append(row)  
+        break
+    except OSError:
+        print("File not found")    
+while True:
+    try:
+        x="./spreadsheets/"+input("Enter the name of the captions spreadsheet file you wanna use:")  
+        with open(x, newline='') as csvfile:
+            spamreader = csv.reader(csvfile, delimiter=' ', quotechar='|')
+            for row in spamreader:
+                captions.append(row) 
+        break
+    except OSError:
+        print("File not found")   
 i=0
 if timestamps[0][2]!=0:
     voidclips.append(video.subclip(0,timestamps[0][2]))
@@ -60,23 +79,23 @@ for timestamp in timestamps:
     standardornot=input("Type 'Standard' for standard positioning or 'Advanced' for non-standard positioning in time-stamp "+timestamp[0]+":")
     if standardornot=="Standard":
         while True:
-            x=int(input("How many images/texts do you want to insert?"))
-            if x>5:
+            x=input("How many images/texts do you want to insert?")
+            if x>"5":
                 print("Can't insert more than 5 images in Standard positioning. Insert number again")
                 continue
-            if x==1:
+            if x=="1":
                 image=me.ImageClip("./images/"+images[i][0])
                 clip=video.subclip(timestamp[2],timestamp[2]+timestamp[1])
                 image_clips.append(me.CompositeVideoClip([clip,image]).set_position(positionsimagesstandard[0]))
                 i=i+1
-            elif x==2:
+            elif x=="2":
                 clip1=me.ImageClip(images[i]).set_duration(timestamp[1]).set_position(positionsimagesstandard[0])
                 i=i+1
                 clip2=me.ImageClip(images[i]).set_duration(timestamp[1]).set_position(positionsimagesstandard[1])
                 clips=concatenate_videoclips(clip1, clip2)
                 image_clips.append(clips)
                 i=i+1
-            elif x==3:
+            elif x=="3":
                 clip1=me.ImageClip(images[i]).set_duration(timestamp[1]).set_position(positionsimagesstandard[0])
                 i=i+1
                 clip2=me.ImageClip(images[i]).set_duration(timestamp[1]).set_position(positionsimagesstandard[1])
@@ -85,7 +104,7 @@ for timestamp in timestamps:
                 clips=concatenate_videoclips(clip1, clip2,clip3)
                 image_clips.append(clips)
                 i=i+1
-            elif x==4:
+            elif x=="4":
                 clip1=me.ImageClip(images[i]).set_duration(timestamp[1]).set_position(positionsimagesstandard[0])
                 i=i+1
                 clip2=me.ImageClip(images[i]).set_duration(timestamp[1]).set_position(positionsimagesstandard[1])
@@ -96,7 +115,7 @@ for timestamp in timestamps:
                 clips=concatenate_videoclips(clip1, clip2,clip3,clip4)
                 image_clips.append(clips)
                 i=i+1
-            elif x==5:
+            elif x=="5":
                 clip1=me.ImageClip(images[i]).set_duration(timestamp[1]).set_position(positionsimagesstandard[0])
                 i=i+1
                 clip2=me.ImageClip(images[i]).set_duration(timestamp[1]).set_position(positionsimagesstandard[1])
@@ -111,6 +130,7 @@ for timestamp in timestamps:
                 i=i+1
             else:
                 print("This input is not recognizable. Enter your input again")
+                continue
             break
 j=0
 for i in range(len(voidclips)):
@@ -122,7 +142,6 @@ for void in voidclips:
     print(void)
 final=concatenate_videoclips(voidclips)
 final.write_videofile("./output/new_filename.mp4",fps=24)
-
 
 
 
