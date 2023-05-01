@@ -81,7 +81,11 @@ if timestamps[len(timestamps)-1][2]+timestamps[len(timestamps)-1][1]<video.durat
     voidclips.append(video.subclip(timestamps[len(timestamps)-1][2]+timestamps[len(timestamps)-1][1],video.duration))
 print(voidclips)
 for timestamp in timestamps:
-    standardornot=input("Type 'Cross' for Cross positioning or '3x3' for 3x3 positioning in time-stamp "+timestamp[0]+":")
+    standardornot=""
+    while(not standardornot==("Cross" or "3x3")):
+        standardornot=input("Type 'Cross' for Cross positioning or '3x3' for 3x3 positioning in time-stamp "+timestamp[0]+":")
+        if(not standardornot==("Cross" or "3x3")):
+            print("Invalid input")
     if standardornot=="Cross":
         while True:
             x=input("How many images/texts do you want to insert?")
@@ -434,7 +438,6 @@ for void in voidclips:
 print(voidclips)
 final=concatenate_videoclips(voidclips)
 final.write_videofile("./output/new_filename.mp4",fps=24)
-
 
 
 
