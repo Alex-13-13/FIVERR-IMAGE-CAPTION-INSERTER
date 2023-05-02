@@ -25,4 +25,4 @@ IMPORTANT STUFF, READ BEFORE USING THE PROGRAM:
 
 10. In the Cross positioning option, the first image is the one on the center, the second one on the top-left corner, the third one on the top-right corner, the fourth one on the bottom-left corner and the fifth one on the bottom-right corner. Take into account this order to enter your input correctly.
 
-11. In the 3x3 positioning option, the first 3 images are on the top row, the next 3 ones are on the middle row and the last 3 ones are on the bottom row. Take into account this order to enter your input correctly.
+11. In the 3x3 positioning option, the first 3 images are on the top row, the next 3 ones are on the middle row and the last 3 ones are on the bottom row, all in left to right increasing order. Take into account this order to enter your input correctly.
