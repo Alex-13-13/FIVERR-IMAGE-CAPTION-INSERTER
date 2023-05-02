@@ -90,7 +90,6 @@ print("")
 
 def new_func():
     return 400
-
 for timestamp in timestamps:
     standardornot = ""
     while not((standardornot == "Cross") or (standardornot == "3x3")):
@@ -118,14 +117,18 @@ for timestamp in timestamps:
                     "./images/"+images[i][0]).set_duration(timestamp[1]).resize(height=450)
                 image5 = me.ImageClip("./images/"+images[i][0]).set_duration(timestamp[1]).resize(
                     height=450).set_position((0.5*1920-image5.size[0]/2, 0.5*1080-225))
-            fullcaption = ""
-            for c in captions[i]:
-                fullcaption = fullcaption+c
-                fullcaption = fullcaption+' '
-            caption5 = me.TextClip(fullcaption, font='Amiri-Bold', bg_color='black', fontsize=25, color='white', method='caption', size=(
-                image5.size[0], None)).set_duration(timestamp[1]).set_position((0.5*1920-image5.size[0]/2, 0.5*1080-image5.size[1]/2-45))
-            caption5 = me.TextClip(fullcaption, font='Amiri-Bold', bg_color='black', fontsize=25, color='white', method='caption', size=(
-                image5.size[0], None)).set_duration(timestamp[1]).set_position((0.5*1920-image5.size[0]/2, 0.5*1080-image5.size[1]/2-caption5.size[1]))
+            if captions[i]==[]:
+                caption5 = me.TextClip(" ", fontsize=25, color="white", size=(
+                1, 1), bg_color="transparent").set_duration(timestamp[1])
+            else:
+                fullcaption = ""
+                for c in captions[i]:
+                    fullcaption = fullcaption+c
+                    fullcaption = fullcaption+' '
+                caption5 = me.TextClip(fullcaption, font='Amiri-Bold', bg_color='black', fontsize=25, color='white', method='caption', size=(
+                    image5.size[0], None)).set_duration(timestamp[1]).set_position((0.5*1920-image5.size[0]/2, 0.5*1080-image5.size[1]/2-45))
+                caption5 = me.TextClip(fullcaption, font='Amiri-Bold', bg_color='black', fontsize=25, color='white', method='caption', size=(
+                    image5.size[0], None)).set_duration(timestamp[1]).set_position((0.5*1920-image5.size[0]/2, 0.5*1080-image5.size[1]/2-caption5.size[1]))
             i = i+1
 
         if images[i] == []:
@@ -146,22 +149,26 @@ for timestamp in timestamps:
                     "./images/"+images[i][0]).set_duration(timestamp[1]).resize(height=300)
                 image1 = me.ImageClip("./images/"+images[i][0]).set_duration(
                     timestamp[1]).resize(height=300).set_position((0.025*1920, 0.075*1080))
-            fullcaption = ""
-            for c in captions[i]:
-                fullcaption = fullcaption+c
-                fullcaption = fullcaption+' '
-            caption1 = me.TextClip(fullcaption, font='Amiri-Bold', fontsize=20, bg_color='black', color='white', method='caption',
-                                   size=(image1.size[0], None)).set_duration(timestamp[1]).set_position((0.025*1920, 0.075*1080-45))
-            if image1.size[1] <= image1.size[0]:
-                image1 = me.ImageClip(
-                    "./images/"+images[i][0]).set_duration(timestamp[1]).resize(width=450)
-                image1 = me.ImageClip("./images/"+images[i][0]).set_duration(timestamp[1]).resize(
-                    width=450).set_position((0.025*1920, 0.075*1080-45+caption1.size[1]))
+            if captions[i]==[]:
+                caption1 = me.TextClip(" ", fontsize=25, color="white", size=(
+                1, 1), bg_color="transparent").set_duration(timestamp[1])
             else:
-                image1 = me.ImageClip(
-                    "./images/"+images[i][0]).set_duration(timestamp[1]).resize(height=300)
-                image1 = me.ImageClip("./images/"+images[i][0]).set_duration(timestamp[1]).resize(
-                    height=300).set_position((0.025*1920, 0.075*1080-45+caption1.size[1]))
+                fullcaption = ""
+                for c in captions[i]:
+                    fullcaption = fullcaption+c
+                    fullcaption = fullcaption+' '
+                caption1 = me.TextClip(fullcaption, font='Amiri-Bold', fontsize=20, bg_color='black', color='white', method='caption',
+                                    size=(image1.size[0], None)).set_duration(timestamp[1]).set_position((0.025*1920, 0.075*1080-45))
+                if image1.size[1] <= image1.size[0]:
+                    image1 = me.ImageClip(
+                        "./images/"+images[i][0]).set_duration(timestamp[1]).resize(width=450)
+                    image1 = me.ImageClip("./images/"+images[i][0]).set_duration(timestamp[1]).resize(
+                        width=450).set_position((0.025*1920, 0.075*1080-45+caption1.size[1]))
+                else:
+                    image1 = me.ImageClip(
+                        "./images/"+images[i][0]).set_duration(timestamp[1]).resize(height=300)
+                    image1 = me.ImageClip("./images/"+images[i][0]).set_duration(timestamp[1]).resize(
+                        height=300).set_position((0.025*1920, 0.075*1080-45+caption1.size[1]))
             i = i+1
 
         if images[i] == []:
@@ -182,22 +189,26 @@ for timestamp in timestamps:
                     "./images/"+images[i][0]).set_duration(timestamp[1]).resize(height=300)
                 image3 = me.ImageClip("./images/"+images[i][0]).set_duration(timestamp[1]).resize(
                     height=300).set_position((1920-image3.size[0]-0.025*1920, 0.075*1080))
-            fullcaption = ""
-            for c in captions[i]:
-                fullcaption = fullcaption+c
-                fullcaption = fullcaption+' '
-            caption3 = me.TextClip(fullcaption, font='Amiri-Bold', fontsize=20, bg_color='black', color='white', method='caption', size=(
-                image3.size[0], None)).set_duration(timestamp[1]).set_position((1920-image3.size[0]-0.025*1920, 0.075*1080-45))
-            if image3.size[1] <= image3.size[0]:
-                image3 = me.ImageClip(
-                    "./images/"+images[i][0]).set_duration(timestamp[1]).resize(width=450)
-                image3 = me.ImageClip("./images/"+images[i][0]).set_duration(timestamp[1]).resize(
-                    width=450).set_position((1920-450-0.025*1920, 0.075*1080-45+caption3.size[1]))
+            if captions[i]==[]:
+                caption3 = me.TextClip(" ", fontsize=25, color="white", size=(
+                1, 1), bg_color="transparent").set_duration(timestamp[1])
             else:
-                image3 = me.ImageClip(
-                    "./images/"+images[i][0]).set_duration(timestamp[1]).resize(height=300)
-                image3 = me.ImageClip("./images/"+images[i][0]).set_duration(timestamp[1]).resize(
-                    height=300).set_position((1920-image3.size[0]-0.025*1920, 0.075*1080-45+caption3.size[1]))
+                fullcaption = ""
+                for c in captions[i]:
+                    fullcaption = fullcaption+c
+                    fullcaption = fullcaption+' '
+                caption3 = me.TextClip(fullcaption, font='Amiri-Bold', fontsize=20, bg_color='black', color='white', method='caption', size=(
+                    image3.size[0], None)).set_duration(timestamp[1]).set_position((1920-image3.size[0]-0.025*1920, 0.075*1080-45))
+                if image3.size[1] <= image3.size[0]:
+                    image3 = me.ImageClip(
+                        "./images/"+images[i][0]).set_duration(timestamp[1]).resize(width=450)
+                    image3 = me.ImageClip("./images/"+images[i][0]).set_duration(timestamp[1]).resize(
+                        width=450).set_position((1920-450-0.025*1920, 0.075*1080-45+caption3.size[1]))
+                else:
+                    image3 = me.ImageClip(
+                        "./images/"+images[i][0]).set_duration(timestamp[1]).resize(height=300)
+                    image3 = me.ImageClip("./images/"+images[i][0]).set_duration(timestamp[1]).resize(
+                        height=300).set_position((1920-image3.size[0]-0.025*1920, 0.075*1080-45+caption3.size[1]))
             i = i+1
 
         if images[i] == []:
@@ -218,14 +229,18 @@ for timestamp in timestamps:
                     "./images/"+images[i][0]).set_duration(timestamp[1]).resize(height=300)
                 image7 = me.ImageClip("./images/"+images[i][0]).set_duration(
                     timestamp[1]).resize(height=300).set_position((0.025*1920, 1080-0.025*1080-300))
-            fullcaption = ""
-            for c in captions[i]:
-                fullcaption = fullcaption+c
-                fullcaption = fullcaption+' '
-            caption7 = me.TextClip(fullcaption, font='Amiri-Bold', bg_color='black', fontsize=20, color='white', method='caption', size=(
-                image7.size[0], None)).set_duration(timestamp[1]).set_position((0.025*1920, 1080-0.025*1080-image7.size[1]-45))
-            caption7 = me.TextClip(fullcaption, font='Amiri-Bold', bg_color='black', fontsize=20, color='white', method='caption', size=(
-                image7.size[0], None)).set_duration(timestamp[1]).set_position((0.025*1920, 1080-0.025*1080-image7.size[1]-caption7.size[1]))
+            if captions[i]==[]:
+                caption7 = me.TextClip(" ", fontsize=25, color="white", size=(
+                1, 1), bg_color="transparent").set_duration(timestamp[1])
+            else:
+                fullcaption = ""
+                for c in captions[i]:
+                    fullcaption = fullcaption+c
+                    fullcaption = fullcaption+' '
+                caption7 = me.TextClip(fullcaption, font='Amiri-Bold', bg_color='black', fontsize=20, color='white', method='caption', size=(
+                    image7.size[0], None)).set_duration(timestamp[1]).set_position((0.025*1920, 1080-0.025*1080-image7.size[1]-45))
+                caption7 = me.TextClip(fullcaption, font='Amiri-Bold', bg_color='black', fontsize=20, color='white', method='caption', size=(
+                    image7.size[0], None)).set_duration(timestamp[1]).set_position((0.025*1920, 1080-0.025*1080-image7.size[1]-caption7.size[1]))
             i = i+1
 
         if images[i] == []:
@@ -245,14 +260,18 @@ for timestamp in timestamps:
                     "./images/"+images[i][0]).set_duration(timestamp[1]).resize(height=300)
                 image9 = me.ImageClip("./images/"+images[i][0]).set_duration(timestamp[1]).resize(
                     height=300).set_position((1920-image9.size[0]-0.025*1920, 1080-0.025*1080-300))
-            fullcaption = ""
-            for c in captions[i]:
-                fullcaption = fullcaption+c
-                fullcaption = fullcaption+' '
-            caption9 = me.TextClip(fullcaption, font='Amiri-Bold', bg_color='black', fontsize=20, color='white', method='caption', size=(
-                image9.size[0], None)).set_duration(timestamp[1]).set_position((1920-image9.size[0]-0.025*1920, 1080-0.025*1080-image9.size[1]-45))
-            caption9 = me.TextClip(fullcaption, font='Amiri-Bold', bg_color='black', fontsize=20, color='white', method='caption', size=(
-                image9.size[0], None)).set_duration(timestamp[1]).set_position((1920-image9.size[0]-0.025*1920, 1080-0.025*1080-image9.size[1]-caption9.size[1]))
+            if captions[i]==[]:
+                caption9 = me.TextClip(" ", fontsize=25, color="white", size=(
+                1, 1), bg_color="transparent").set_duration(timestamp[1])
+            else:
+                fullcaption = ""
+                for c in captions[i]:
+                    fullcaption = fullcaption+c
+                    fullcaption = fullcaption+' '
+                caption9 = me.TextClip(fullcaption, font='Amiri-Bold', bg_color='black', fontsize=20, color='white', method='caption', size=(
+                    image9.size[0], None)).set_duration(timestamp[1]).set_position((1920-image9.size[0]-0.025*1920, 1080-0.025*1080-image9.size[1]-45))
+                caption9 = me.TextClip(fullcaption, font='Amiri-Bold', bg_color='black', fontsize=20, color='white', method='caption', size=(
+                    image9.size[0], None)).set_duration(timestamp[1]).set_position((1920-image9.size[0]-0.025*1920, 1080-0.025*1080-image9.size[1]-caption9.size[1]))
             
         clip = video.subclip(timestamp[2], timestamp[2]+timestamp[1])
         image_clips.append(me.CompositeVideoClip(
@@ -272,30 +291,34 @@ for timestamp in timestamps:
             image1 = me.ImageClip("./images/"+images[i][0])
             if image1.size[1] <= image1.size[0]:
                 image1 = me.ImageClip(
-                    "./images/"+images[i][0]).set_duration(timestamp[1]).resize(width=350)
+                    "./images/"+images[i][0]).set_duration(timestamp[1]).resize(width=250)
                 image1 = me.ImageClip("./images/"+images[i][0]).set_duration(
-                    timestamp[1]).resize(width=350).set_position((0.075*1920, 0.075*1080))
+                    timestamp[1]).resize(width=250).set_position((0.01*1920, 0.01*1080))
             else:
                 image1 = me.ImageClip(
-                    "./images/"+images[i][0]).set_duration(timestamp[1]).resize(height=280)
+                    "./images/"+images[i][0]).set_duration(timestamp[1]).resize(height=180)
                 image1 = me.ImageClip("./images/"+images[i][0]).set_duration(
-                    timestamp[1]).resize(height=280).set_position((0.075*1920, 0.075*1080))
-            fullcaption = ""
-            for c in captions[i]:
-                fullcaption = fullcaption+c
-                fullcaption = fullcaption+' '
-            caption1 = me.TextClip(fullcaption, font='Amiri-Bold', fontsize=20, bg_color='black', color='white', method='caption',
-                                   size=(image1.size[0], None)).set_duration(timestamp[1]).set_position((0.075*1920, 0.075*1080-45))
-            if image1.size[1] <= image1.size[0]:
-                image1 = me.ImageClip(
-                    "./images/"+images[i][0]).set_duration(timestamp[1]).resize(width=350)
-                image1 = me.ImageClip("./images/"+images[i][0]).set_duration(timestamp[1]).resize(
-                    width=350).set_position((0.075*1920, 0.075*1080-45+caption1.size[1]))
+                    timestamp[1]).resize(height=180).set_position((0.01*1920, 0.01*1080))
+            if captions[i]==[]:
+                caption1 = me.TextClip(" ", fontsize=25, color="white", size=(
+                1, 1), bg_color="transparent").set_duration(timestamp[1])
             else:
-                image1 = me.ImageClip(
-                    "./images/"+images[i][0]).set_duration(timestamp[1]).resize(height=280)
-                image1 = me.ImageClip("./images/"+images[i][0]).set_duration(timestamp[1]).resize(
-                    height=280).set_position((0.075*1920, 0.075*1080-45+caption1.size[1]))
+                fullcaption = ""
+                for c in captions[i]:
+                    fullcaption = fullcaption+c
+                    fullcaption = fullcaption+' '
+                caption1 = me.TextClip(fullcaption, font='Amiri-Bold', fontsize=20, bg_color='black', color='white', method='caption',
+                                    size=(250, None)).set_duration(timestamp[1]).set_position((0.01*1920, 0.01*1080))
+                if image1.size[1] <= image1.size[0]:
+                    image1 = me.ImageClip(
+                        "./images/"+images[i][0]).set_duration(timestamp[1]).resize(width=250)
+                    image1 = me.ImageClip("./images/"+images[i][0]).set_duration(timestamp[1]).resize(
+                        width=250).set_position((0.01*1920, 0.01*1080+caption1.size[1]))
+                else:
+                    image1 = me.ImageClip(
+                        "./images/"+images[i][0]).set_duration(timestamp[1]).resize(height=180)
+                    image1 = me.ImageClip("./images/"+images[i][0]).set_duration(timestamp[1]).resize(
+                        height=180).set_position((0.01*1920+125-image1.size[0]/2, 0.01*1080+caption1.size[1]))
             i = i+1
 
         if images[i] == []:
@@ -308,22 +331,36 @@ for timestamp in timestamps:
             image2 = me.ImageClip("./images/"+images[i][0])
             if image2.size[1] <= image2.size[0]:
                 image2 = me.ImageClip(
-                    "./images/"+images[i][0]).set_duration(timestamp[1]).resize(width=350)
+                    "./images/"+images[i][0]).set_duration(timestamp[1]).resize(width=250)
                 image2 = me.ImageClip("./images/"+images[i][0]).set_duration(timestamp[1]).resize(
-                    width=350).set_position((0.5*1920-175,  0.075*1080))
+                    width=250).set_position((0.5*1920-125,  0.01*1080))
             else:
                 image2 = me.ImageClip(
-                    "./images/"+images[i][0]).set_duration(timestamp[1]).resize(height=280)
+                    "./images/"+images[i][0]).set_duration(timestamp[1]).resize(height=180)
                 image2 = me.ImageClip("./images/"+images[i][0]).set_duration(timestamp[1]).resize(
-                    height=280).set_position((0.5*1920-image2.size[0]/2,  0.075*1080))
-            fullcaption = ""
-            for c in captions[i]:
-                fullcaption = fullcaption+c
-                fullcaption = fullcaption+' '
-            caption2 = me.TextClip(fullcaption, font='Amiri-Bold', bg_color='black', fontsize=25, color='white', method='caption', size=(
-                image2.size[0], None)).set_duration(timestamp[1]).set_position((0.5*1920-image2.size[0]/2,  0.075*1080-45))
-            caption2 = me.TextClip(fullcaption, font='Amiri-Bold', bg_color='black', fontsize=25, color='white', method='caption', size=(
-                image2.size[0], None)).set_duration(timestamp[1]).set_position((0.5*1920-image2.size[0]/2,  0.075*1080-caption2.size[1]))
+                    height=180).set_position((0.5*1920-image2.size[0]/2,  0.01*1080))
+            if captions[i]==[]:
+                caption2 = me.TextClip(" ", fontsize=25, color="white", size=(
+                1, 1), bg_color="transparent").set_duration(timestamp[1])
+            else:
+                fullcaption = ""
+                for c in captions[i]:
+                    fullcaption = fullcaption+c
+                    fullcaption = fullcaption+' '
+                caption2 = me.TextClip(fullcaption, font='Amiri-Bold', bg_color='black', fontsize=20, color='white', method='caption', size=(
+                    250, None)).set_duration(timestamp[1]).set_position((0.5*1920-125,  0.01*1080))
+                caption2 = me.TextClip(fullcaption, font='Amiri-Bold', bg_color='black', fontsize=20, color='white', method='caption', size=(
+                    250, None)).set_duration(timestamp[1]).set_position((0.5*1920-125,  0.01*1080))
+                if image2.size[1] <= image2.size[0]:
+                    image2 = me.ImageClip(
+                        "./images/"+images[i][0]).set_duration(timestamp[1]).resize(width=250)
+                    image2 = me.ImageClip("./images/"+images[i][0]).set_duration(timestamp[1]).resize(
+                        width=250).set_position((0.5*1920-125,  0.01*1080+caption2.size[1]))
+                else:
+                    image2 = me.ImageClip(
+                        "./images/"+images[i][0]).set_duration(timestamp[1]).resize(height=180)
+                    image2 = me.ImageClip("./images/"+images[i][0]).set_duration(timestamp[1]).resize(
+                        height=180).set_position((0.5*1920-image2.size[0]/2,  0.01*1080+caption2.size[1]))
             i = i+1
 
         if images[i] == []:
@@ -336,30 +373,34 @@ for timestamp in timestamps:
             image3 = me.ImageClip("./images/"+images[i][0])
             if image3.size[1] <= image3.size[0]:
                 image3 = me.ImageClip(
-                    "./images/"+images[i][0]).set_duration(timestamp[1]).resize(width=350)
+                    "./images/"+images[i][0]).set_duration(timestamp[1]).resize(width=250)
                 image3 = me.ImageClip("./images/"+images[i][0]).set_duration(
-                    timestamp[1]).resize(width=350).set_position((1920-350-0.075*1920, 0.075*1080))
+                    timestamp[1]).resize(width=250).set_position((1920-250-0.01*1920, 0.01*1080))
             else:
                 image3 = me.ImageClip(
-                    "./images/"+images[i][0]).set_duration(timestamp[1]).resize(height=280)
+                    "./images/"+images[i][0]).set_duration(timestamp[1]).resize(height=180)
                 image3 = me.ImageClip("./images/"+images[i][0]).set_duration(timestamp[1]).resize(
-                    height=280).set_position((1920-image3.size[0]-0.075*1920, 0.075*1080))
-            fullcaption = ""
-            for c in captions[i]:
-                fullcaption = fullcaption+c
-                fullcaption = fullcaption+' '
-            caption3 = me.TextClip(fullcaption, font='Amiri-Bold', fontsize=20, bg_color='black', color='white', method='caption', size=(
-                image3.size[0], None)).set_duration(timestamp[1]).set_position((1920-image3.size[0]-0.075*1920, 0.075*1080-45))
-            if image3.size[1] <= image3.size[0]:
-                image3 = me.ImageClip(
-                    "./images/"+images[i][0]).set_duration(timestamp[1]).resize(width=350)
-                image3 = me.ImageClip("./images/"+images[i][0]).set_duration(timestamp[1]).resize(
-                    width=350).set_position((1920-350-0.075*1920, 0.075*1080-45+caption3.size[1]))
+                    height=180).set_position((1920-125-0.01*1920, 0.01*1080))
+            if captions[i]==[]:
+                caption3 = me.TextClip(" ", fontsize=25, color="white", size=(
+                1, 1), bg_color="transparent").set_duration(timestamp[1])
             else:
-                image3 = me.ImageClip(
-                    "./images/"+images[i][0]).set_duration(timestamp[1]).resize(height=280)
-                image3 = me.ImageClip("./images/"+images[i][0]).set_duration(timestamp[1]).resize(
-                    height=280).set_position((1920-image3.size[0]-0.075*1920, 0.075*1080-45+caption3.size[1]))
+                fullcaption = ""
+                for c in captions[i]:
+                    fullcaption = fullcaption+c
+                    fullcaption = fullcaption+' '
+                caption3 = me.TextClip(fullcaption, font='Amiri-Bold', fontsize=20, bg_color='black', color='white', method='caption', size=(
+                    250, None)).set_duration(timestamp[1]).set_position((1920-250-0.01*1920, 0.01*1080))
+                if image3.size[1] <= image3.size[0]:
+                    image3 = me.ImageClip(
+                        "./images/"+images[i][0]).set_duration(timestamp[1]).resize(width=250)
+                    image3 = me.ImageClip("./images/"+images[i][0]).set_duration(timestamp[1]).resize(
+                        width=250).set_position((1920-250-0.01*1920, 0.01*1080+caption3.size[1]))
+                else:
+                    image3 = me.ImageClip(
+                        "./images/"+images[i][0]).set_duration(timestamp[1]).resize(height=180)
+                    image3 = me.ImageClip("./images/"+images[i][0]).set_duration(timestamp[1]).resize(
+                        height=180).set_position((1920-image3.size[0]/2-0.01*1920-125, 0.01*1080+caption3.size[1]))
             i = i+1
 
         if images[i] == []:
@@ -372,22 +413,26 @@ for timestamp in timestamps:
             image4 = me.ImageClip("./images/"+images[i][0])
             if image4.size[1] <= image4.size[0]:
                 image4 = me.ImageClip(
-                    "./images/"+images[i][0]).set_duration(timestamp[1]).resize(width=350)
+                    "./images/"+images[i][0]).set_duration(timestamp[1]).resize(width=250)
                 image4 = me.ImageClip("./images/"+images[i][0]).set_duration(timestamp[1]).resize(
-                    width=350).set_position((0.075*1920, 0.5*1080-image4.size[1]/2))
+                    width=250).set_position((0.01*1920, 0.5*1080-image4.size[1]/2))
             else:
                 image4 = me.ImageClip(
-                    "./images/"+images[i][0]).set_duration(timestamp[1]).resize(height=280)
+                    "./images/"+images[i][0]).set_duration(timestamp[1]).resize(height=180)
                 image4 = me.ImageClip("./images/"+images[i][0]).set_duration(timestamp[1]).resize(
-                    height=280).set_position((0.075*1920, 0.5*1080-140))
-            fullcaption = ""
-            for c in captions[i]:
-                fullcaption = fullcaption+c
-                fullcaption = fullcaption+' '
-            caption4 = me.TextClip(fullcaption, font='Amiri-Bold', bg_color='black', fontsize=25, color='white', method='caption', size=(
-                image4.size[0], None)).set_duration(timestamp[1]).set_position((0.075*1920, 0.5*1080-image4.size[1]/2-45))
-            caption4 = me.TextClip(fullcaption, font='Amiri-Bold', bg_color='black', fontsize=25, color='white', method='caption', size=(
-                image4.size[0], None)).set_duration(timestamp[1]).set_position((0.075*1920, 0.5*1080-image4.size[1]/2-caption4.size[1]))
+                    height=180).set_position((0.01*1920+125-image4.size[0]/2, 0.5*1080-90))
+            if captions[i]==[]:
+                caption4 = me.TextClip(" ", fontsize=25, color="white", size=(
+                1, 1), bg_color="transparent").set_duration(timestamp[1])
+            else:
+                fullcaption = ""
+                for c in captions[i]:
+                    fullcaption = fullcaption+c
+                    fullcaption = fullcaption+' '
+                caption4 = me.TextClip(fullcaption, font='Amiri-Bold', bg_color='black', fontsize=20, color='white', method='caption', size=(
+                    250, None)).set_duration(timestamp[1]).set_position((0.01*1920, 0.5*1080-image4.size[1]/2-40))
+                caption4 = me.TextClip(fullcaption, font='Amiri-Bold', bg_color='black', fontsize=20, color='white', method='caption', size=(
+                    250, None)).set_duration(timestamp[1]).set_position((0.01*1920, 0.5*1080-image4.size[1]/2-caption4.size[1]))
             i = i+1
 
         if images[i] == []:
@@ -400,22 +445,26 @@ for timestamp in timestamps:
             image5 = me.ImageClip("./images/"+images[i][0])
             if image5.size[1] <= image5.size[0]:
                 image5 = me.ImageClip(
-                    "./images/"+images[i][0]).set_duration(timestamp[1]).resize(width=350)
+                    "./images/"+images[i][0]).set_duration(timestamp[1]).resize(width=250)
                 image5 = me.ImageClip("./images/"+images[i][0]).set_duration(timestamp[1]).resize(
-                    width=350).set_position((0.5*1920-175, 0.5*1080-image5.size[1]/2))
+                    width=250).set_position((0.5*1920-125, 0.5*1080-image5.size[1]/2))
             else:
                 image5 = me.ImageClip(
-                    "./images/"+images[i][0]).set_duration(timestamp[1]).resize(height=280)
+                    "./images/"+images[i][0]).set_duration(timestamp[1]).resize(height=180)
                 image5 = me.ImageClip("./images/"+images[i][0]).set_duration(timestamp[1]).resize(
-                    height=280).set_position((0.5*1920-image5.size[0]/2, 0.5*1080-140))
-            fullcaption = ""
-            for c in captions[i]:
-                fullcaption = fullcaption+c
-                fullcaption = fullcaption+' '
-            caption5 = me.TextClip(fullcaption, font='Amiri-Bold', bg_color='black', fontsize=25, color='white', method='caption', size=(
-                image5.size[0], None)).set_duration(timestamp[1]).set_position((0.5*1920-image5.size[0]/2, 0.5*1080-image5.size[1]/2-45))
-            caption5 = me.TextClip(fullcaption, font='Amiri-Bold', bg_color='black', fontsize=25, color='white', method='caption', size=(
-                image5.size[0], None)).set_duration(timestamp[1]).set_position((0.5*1920-image5.size[0]/2, 0.5*1080-image5.size[1]/2-caption5.size[1]))
+                    height=180).set_position((0.5*1920-image5.size[0]/2, 0.5*1080-90))
+            if captions[i]==[]:
+                caption5 = me.TextClip(" ", fontsize=25, color="white", size=(
+                1, 1), bg_color="transparent").set_duration(timestamp[1])
+            else:
+                fullcaption = ""
+                for c in captions[i]:
+                    fullcaption = fullcaption+c
+                    fullcaption = fullcaption+' '
+                caption5 = me.TextClip(fullcaption, font='Amiri-Bold', bg_color='black', fontsize=20, color='white', method='caption', size=(
+                    250, None)).set_duration(timestamp[1]).set_position((0.5*1920-125, 0.5*1080-image5.size[1]/2-40))
+                caption5 = me.TextClip(fullcaption, font='Amiri-Bold', bg_color='black', fontsize=20, color='white', method='caption', size=(
+                    250, None)).set_duration(timestamp[1]).set_position((0.5*1920-125, 0.5*1080-image5.size[1]/2-caption5.size[1]))
             i = i+1
 
         if images[i] == []:
@@ -428,30 +477,26 @@ for timestamp in timestamps:
             image6 = me.ImageClip("./images/"+images[i][0])
             if image6.size[1] <= image6.size[0]:
                 image6 = me.ImageClip(
-                    "./images/"+images[i][0]).set_duration(timestamp[1]).resize(width=350)
+                    "./images/"+images[i][0]).set_duration(timestamp[1]).resize(width=250)
                 image6 = me.ImageClip("./images/"+images[i][0]).set_duration(
-                    timestamp[1]).resize(width=350).set_position((1920-350-0.075*1920, 0.5*1080-image6.size[1]/2))
+                    timestamp[1]).resize(width=250).set_position((1920-250-0.01*1920, 0.5*1080-image6.size[1]/2))
             else:
                 image6 = me.ImageClip(
-                    "./images/"+images[i][0]).set_duration(timestamp[1]).resize(height=280)
+                    "./images/"+images[i][0]).set_duration(timestamp[1]).resize(height=180)
                 image6 = me.ImageClip("./images/"+images[i][0]).set_duration(timestamp[1]).resize(
-                    height=280).set_position((1920-image6.size[0]-0.075*1920,  0.5*(1080-140)))
-            fullcaption = ""
-            for c in captions[i]:
-                fullcaption = fullcaption+c
-                fullcaption = fullcaption+' '
-            caption6 = me.TextClip(fullcaption, font='Amiri-Bold', fontsize=20, bg_color='black', color='white', method='caption', size=(
-                image6.size[0], None)).set_duration(timestamp[1]).set_position((1920-image6.size[0]-0.075*1920, 0.5*1080-image6.size[1]/2-45))
-            if image6.size[1] <= image6.size[0]:
-                image6 = me.ImageClip(
-                    "./images/"+images[i][0]).set_duration(timestamp[1]).resize(width=350)
-                image6 = me.ImageClip("./images/"+images[i][0]).set_duration(timestamp[1]).resize(
-                    width=350).set_position((1920-350-0.075*1920, 0.5*1080-image6.size[1]/2-caption6.size[1]))
+                    height=180).set_position((1920-image6.size[0]/2-0.01*1920-125,  0.5*1080-90))
+            if captions[i]==[]:
+                caption6 = me.TextClip(" ", fontsize=25, color="white", size=(
+                1, 1), bg_color="transparent").set_duration(timestamp[1])
             else:
-                image6 = me.ImageClip(
-                    "./images/"+images[i][0]).set_duration(timestamp[1]).resize(height=280)
-                image6 = me.ImageClip("./images/"+images[i][0]).set_duration(timestamp[1]).resize(
-                    height=280).set_position((1920-image6.size[0]-0.075*1920, 0.5*1080-image6.size[1]/2-caption6.size[1]))
+                fullcaption = ""
+                for c in captions[i]:
+                    fullcaption = fullcaption+c
+                    fullcaption = fullcaption+' '
+                caption6 = me.TextClip(fullcaption, font='Amiri-Bold', fontsize=20, bg_color='black', color='white', method='caption', size=(
+                    250, None)).set_duration(timestamp[1]).set_position((1920-0.01*1920-250, 0.5*1080-image6.size[1]/2-40))
+                caption6 = me.TextClip(fullcaption, font='Amiri-Bold', fontsize=20, bg_color='black', color='white', method='caption', size=(
+                    250, None)).set_duration(timestamp[1]).set_position((1920-0.01*1920-250, 0.5*1080-image6.size[1]/2-caption6.size[1]))
             i = i+1
 
         if images[i] == []:
@@ -464,22 +509,26 @@ for timestamp in timestamps:
             image7 = me.ImageClip("./images/"+images[i][0])
             if image7.size[1] <= image7.size[0]:
                 image7 = me.ImageClip(
-                    "./images/"+images[i][0]).set_duration(timestamp[1]).resize(width=new_func())
+                    "./images/"+images[i][0]).set_duration(timestamp[1]).resize(width=250)
                 image7 = me.ImageClip("./images/"+images[i][0]).set_duration(timestamp[1]).resize(
-                    width=400).set_position((0.075*1920, 1080-0.025*1080-image7.size[1]))
+                    width=250).set_position((0.01*1920, 1080-0.09*1080-image7.size[1]))
             else:
                 image7 = me.ImageClip(
-                    "./images/"+images[i][0]).set_duration(timestamp[1]).resize(height=280)
+                    "./images/"+images[i][0]).set_duration(timestamp[1]).resize(height=180)
                 image7 = me.ImageClip("./images/"+images[i][0]).set_duration(
-                    timestamp[1]).resize(height=280).set_position((0.075*1920, 1080-0.025*1080-280))
-            fullcaption = ""
-            for c in captions[i]:
-                fullcaption = fullcaption+c
-                fullcaption = fullcaption+' '
-            caption7 = me.TextClip(fullcaption, font='Amiri-Bold', bg_color='black', fontsize=20, color='white', method='caption', size=(
-                image7.size[0], None)).set_duration(timestamp[1]).set_position((0.075*1920, 1080-0.025*1080-image7.size[1]-45))
-            caption7 = me.TextClip(fullcaption, font='Amiri-Bold', bg_color='black', fontsize=20, color='white', method='caption', size=(
-                image7.size[0], None)).set_duration(timestamp[1]).set_position((0.075*1920, 1080-0.025*1080-image7.size[1]-caption7.size[1]))
+                    timestamp[1]).resize(height=180).set_position((0.01*1920+125-image7.size[0]/2, 1080-0.09*1080-180))
+            if captions[i]==[]:
+                caption7 = me.TextClip(" ", fontsize=25, color="white", size=(
+                1, 1), bg_color="transparent").set_duration(timestamp[1])
+            else:
+                fullcaption = ""
+                for c in captions[i]:
+                    fullcaption = fullcaption+c
+                    fullcaption = fullcaption+' '
+                caption7 = me.TextClip(fullcaption, font='Amiri-Bold', bg_color='black', fontsize=20, color='white', method='caption', size=(
+                    250, None)).set_duration(timestamp[1]).set_position((0.01*1920, 1080-0.09*1080-image7.size[1]-40))
+                caption7 = me.TextClip(fullcaption, font='Amiri-Bold', bg_color='black', fontsize=20, color='white', method='caption', size=(
+                    250, None)).set_duration(timestamp[1]).set_position((0.01*1920, 1080-0.09*1080-image7.size[1]-caption7.size[1]))
             i = i+1
 
         if images[i] == []:
@@ -492,22 +541,26 @@ for timestamp in timestamps:
             image8 = me.ImageClip("./images/"+images[i][0])
             if image8.size[1] <= image8.size[0]:
                 image8 = me.ImageClip(
-                    "./images/"+images[i][0]).set_duration(timestamp[1]).resize(width=350)
+                    "./images/"+images[i][0]).set_duration(timestamp[1]).resize(width=250)
                 image8 = me.ImageClip("./images/"+images[i][0]).set_duration(timestamp[1]).resize(
-                    width=350).set_position((0.5*1920-image8.size[0]/2, 1080-0.025*1080-image8.size[1]))
+                    width=250).set_position((0.5*1920-image8.size[0]/2, 1080-0.09*1080-image8.size[1]))
             else:
                 image8 = me.ImageClip(
-                    "./images/"+images[i][0]).set_duration(timestamp[1]).resize(height=280)
+                    "./images/"+images[i][0]).set_duration(timestamp[1]).resize(height=180)
                 image8 = me.ImageClip("./images/"+images[i][0]).set_duration(
-                    timestamp[1]).resize(height=280).set_position((0.5*1920-image8.size[0]/2, 1080-0.025*1080-280))
-            fullcaption = ""
-            for c in captions[i]:
-                fullcaption = fullcaption+c
-                fullcaption = fullcaption+' '
-            caption8 = me.TextClip(fullcaption, font='Amiri-Bold', bg_color='black', fontsize=20, color='white', method='caption', size=(
-                image8.size[0], None)).set_duration(timestamp[1]).set_position((0.5*1920-image8.size[0]/2, 1080-0.025*1080-image8.size[1]-45))
-            caption8 = me.TextClip(fullcaption, font='Amiri-Bold', bg_color='black', fontsize=20, color='white', method='caption', size=(
-                image8.size[0], None)).set_duration(timestamp[1]).set_position((0.5*1920-image8.size[0]/2, 1080-0.025*1080-image8.size[1]-caption8.size[1]))
+                    timestamp[1]).resize(height=180).set_position((0.5*1920-image8.size[0]/2, 1080-0.09*1080-180))
+            if captions[i]==[]:
+                caption8 = me.TextClip(" ", fontsize=25, color="white", size=(
+                1, 1), bg_color="transparent").set_duration(timestamp[1])
+            else:
+                fullcaption = ""
+                for c in captions[i]:
+                    fullcaption = fullcaption+c
+                    fullcaption = fullcaption+' '
+                caption8 = me.TextClip(fullcaption, font='Amiri-Bold', bg_color='black', fontsize=20, color='white', method='caption', size=(
+                    250, None)).set_duration(timestamp[1]).set_position((0.5*1920-125, 1080-0.09*1080-image8.size[1]-40))
+                caption8 = me.TextClip(fullcaption, font='Amiri-Bold', bg_color='black', fontsize=20, color='white', method='caption', size=(
+                    250, None)).set_duration(timestamp[1]).set_position((0.5*1920-125, 1080-0.09*1080-image8.size[1]-caption8.size[1]))
             i = i+1
 
         if images[i] == []:
@@ -519,22 +572,26 @@ for timestamp in timestamps:
             image9 = me.ImageClip("./images/"+images[i][0])
             if image9.size[1] <= image9.size[0]:
                 image9 = me.ImageClip(
-                    "./images/"+images[i][0]).set_duration(timestamp[1]).resize(width=350)
+                    "./images/"+images[i][0]).set_duration(timestamp[1]).resize(width=250)
                 image9 = me.ImageClip("./images/"+images[i][0]).set_duration(timestamp[1]).resize(
-                    width=350).set_position((1920-350-0.075*1920, 1080-0.025*1080-image9.size[1]))
+                    width=250).set_position((1920-250-0.01*1920, 1080-0.09*1080-image9.size[1]))
             else:
                 image9 = me.ImageClip(
-                    "./images/"+images[i][0]).set_duration(timestamp[1]).resize(height=280)
+                    "./images/"+images[i][0]).set_duration(timestamp[1]).resize(height=180)
                 image9 = me.ImageClip("./images/"+images[i][0]).set_duration(timestamp[1]).resize(
-                    height=280).set_position((1920-image9.size[0]-0.075*1920, 1080-0.025*1080-280))
-            fullcaption = ""
-            for c in captions[i]:
-                fullcaption = fullcaption+c
-                fullcaption = fullcaption+' '
-            caption9 = me.TextClip(fullcaption, font='Amiri-Bold', bg_color='black', fontsize=20, color='white', method='caption', size=(
-                image9.size[0], None)).set_duration(timestamp[1]).set_position((1920-image9.size[0]-0.075*1920, 1080-0.025*1080-image9.size[1]-45))
-            caption9 = me.TextClip(fullcaption, font='Amiri-Bold', bg_color='black', fontsize=20, color='white', method='caption', size=(
-                image9.size[0], None)).set_duration(timestamp[1]).set_position((1920-image9.size[0]-0.075*1920, 1080-0.025*1080-image9.size[1]-caption9.size[1]))
+                    height=180).set_position((1920-image9.size[0]/2-0.01*1920-125, 1080-0.09*1080-180))
+            if captions[i]==[]:
+                caption9 = me.TextClip(" ", fontsize=25, color="white", size=(
+                1, 1), bg_color="transparent").set_duration(timestamp[1])
+            else:
+                fullcaption = ""
+                for c in captions[i]:
+                    fullcaption = fullcaption+c
+                    fullcaption = fullcaption+' '
+                caption9 = me.TextClip(fullcaption, font='Amiri-Bold', bg_color='black', fontsize=20, color='white', method='caption', size=(
+                    250, None)).set_duration(timestamp[1]).set_position((1920-0.01*1920-250, 1080-0.09*1080-image9.size[1]-40))
+                caption9 = me.TextClip(fullcaption, font='Amiri-Bold', bg_color='black', fontsize=20, color='white', method='caption', size=(
+                    250, None)).set_duration(timestamp[1]).set_position((1920-0.01*1920-250, 1080-0.09*1080-image9.size[1]-caption9.size[1]))
             
         clip = video.subclip(timestamp[2], timestamp[2]+timestamp[1])
         image_clips.append(me.CompositeVideoClip(
@@ -551,4 +608,7 @@ for void in voidclips:
     print(void)
 print(voidclips)
 final = concatenate_videoclips(voidclips)
+final.resize((1280,720))
+for index, timestamp in enumerate(timestamps):
+    final.save_frame("./frames/frame"+str(index)+".png", t=timestamp[2])
 final.write_videofile("./output/new_filename.mp4", fps=24)
