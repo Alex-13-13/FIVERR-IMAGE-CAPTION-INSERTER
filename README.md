@@ -19,7 +19,7 @@ IMPORTANT STUFF, READ BEFORE USING THE PROGRAM:
 
 7. The output is always written in the output folder as new_filename.mp4 so whenever the program starts generating output it replaces the previous one, so be sure to save that output file in another place if you wanna save it before starting the program again.
 
-8. Both the images and the captions spreadsheets must have a number of slots equal to or bigger than the 9*the number of timestamps. Any of these slots can be empty.
+8. Both the images and the captions spreadsheets must have a number of slots equal to or bigger than 9*(the number of timestamps). Any of these slots can be empty.
 
 9. Be sure to put the elements in the images and the captions spreadsheets in the same and correct order, leaving the same empty slots for both.
 
